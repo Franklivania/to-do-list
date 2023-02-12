@@ -1,5 +1,5 @@
-import './App.css';
 import React, { useState } from "react";
+import './App.css';
 
 function App() {
   const [todos, setTodos] = useState([
@@ -7,6 +7,11 @@ function App() {
     { id: 2, task: "Take a walk in the park", completed: true },
     { id: 3, task: "Study for exams", completed: false }
   ]);
+
+  const date = new Date()
+  const dateArray = date.toString().split(' ');
+  const shortDate = dateArray.slice(0, 4).join(' ');
+  console.log(dateArray)
 
   const addTodo = task => {
     setTodos([...todos, { id: todos.length + 1, task, completed: false }]);
@@ -34,6 +39,7 @@ function App() {
     <div className="App">
       <div>
         <h1>Todo List</h1>
+        <h2>Today is {shortDate}</h2>
         <ul>
           {todos.map(todo => (
             <li key={todo.id}>
