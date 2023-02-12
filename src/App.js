@@ -1,23 +1,57 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from "react";
 
 function App() {
+  const [todos, setTodos] = useState([
+    { id: 1, task: "Go grocery shopping", completed: false },
+    { id: 2, task: "Take a walk in the park", completed: true },
+    { id: 3, task: "Study for exams", completed: false }
+  ]);
+
+  const addTodo = task => {
+    setTodos([...todos, { id: todos.length + 1, task, completed: false }]);
+  };
+
+  const updateTodo = (id, task) => {
+    setTodos(
+      todos.map(todo => (todo.id === id ? { ...todo, task } : todo))
+    );
+  };
+
+  const toggleTodo = id => {
+    setTodos(
+      todos.map(todo =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  };
+
+  const deleteTodo = id => {
+    setTodos(todos.filter(todo => todo.id !== id));
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <h1>Todo List</h1>
+        <ul>
+          {todos.map(todo => (
+            <li key={todo.id}>
+              <input
+                type="checkbox"
+                checked={todo.completed}
+                onChange={() => toggleTodo(todo.id)}
+              />
+              {todo.task}
+              <button onClick={() => updateTodo(todo.id, prompt("New task"))}>
+                Update
+              </button>
+              <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+            </li>
+          ))}
+        </ul>
+        <button onClick={() => addTodo(prompt("Enter task"))}>Add Todo</button>
+      </div>
     </div>
   );
 }
