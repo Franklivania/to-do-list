@@ -4,7 +4,7 @@ import './App.css';
 function App() {
   const [todos, setTodos] = useState([
     { id: 1, task: "Go grocery shopping", completed: false },
-    { id: 2, task: "Take a walk in the park", completed: true },
+    { id: 2, task: "Take a walk in the park", completed: false },
     { id: 3, task: "Study for exams", completed: false }
   ]);
 
@@ -37,27 +37,29 @@ function App() {
 
   return (
     <div className="App">
-      <div>
+      <main>
         <h1>Todo List</h1>
         <h2>Today is {shortDate}</h2>
-        <ul>
+        <section>
           {todos.map(todo => (
-            <li key={todo.id}>
-              <input
-                type="checkbox"
-                checked={todo.completed}
-                onChange={() => toggleTodo(todo.id)}
-              />
-              {todo.task}
-              <button onClick={() => updateTodo(todo.id, prompt("New task"))}>
-                Update
-              </button>
-              <button onClick={() => deleteTodo(todo.id)}>Delete</button>
-            </li>
+            <label key={todo.id}>
+              <div className="task">
+                <input
+                  type="checkbox"
+                  checked={todo.completed}
+                  onChange={() => toggleTodo(todo.id)}
+                  />
+                {todo.task}
+              </div>
+              <div className="toggle">
+                <button onClick={() => updateTodo(todo.id, prompt("New task"))}> Update </button>
+                <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+              </div>
+            </label>
           ))}
-        </ul>
+        </section>
         <button onClick={() => addTodo(prompt("Enter task"))}>Add Todo</button>
-      </div>
+      </main>
     </div>
   );
 }
