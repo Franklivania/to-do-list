@@ -20,7 +20,7 @@
   --ad-height: 100%;
   --main-color: 27, 23, 38;
   --red-color: 217, 38, 56;
-  --good-color: 95, 252, 142;
+  --good-color: 28, 247, 94;
   --neut-color: 64, 98, 186;
   --text-color: 255, 255, 255;
   --font: 'Coming Soon', sans-serif;
@@ -34,6 +34,8 @@ h1, h2{
 main{
   width: calc((var(--width)) * 0.7);
   color: rgba(var(--text-color));
+  display: flex;
+  flex-direction: column;
 }
 
 section{
@@ -52,7 +54,67 @@ label{
   cursor: pointer ;
 }
 
-input{
+/* input{
   text-decoration: line-through;
+} */
+
+input:checked{
+  text-decoration: line-through;
+  /* display: none; */
+  color: rgba(var(--red-color), 1);
 }
 
+button{
+  outline: none;
+  border: none;
+  margin: 0 0.3rem;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  font-family: var(--font);
+  font-weight: 500;
+  letter-spacing: 0.1rem;
+  transition: all 0.2s ease-in-out;
+  background: rgba(var(--main-color), 1);
+  color: rgba(var(--text-color), 1);
+}
+
+button:hover{
+  transform: translate(-0.3rem, -0.2rem);
+}
+
+#update:hover{
+  box-shadow: 0.2rem 0.2rem 0 rgba(var(--good-color), 1);
+  color: rgba(var(--good-color), 1);
+}
+
+#delete:hover{
+  box-shadow: 0.2rem 0.2rem 0 rgba(var(--red-color), 1);
+  color: rgba(var(--red-color), 1);
+}
+
+#add{
+  width: calc((var(--width)) * 0.6);
+  margin: 0.5rem 0;
+  align-self: center;
+}
+
+#add:hover{
+  box-shadow: 0.2rem 0.2rem 0 rgba(var(--neut-color), 1);
+  color: rgba(var(--neut-color), 1);
+}
+
+
+@media screen and (max-width: 767px) {
+  main{
+    width: calc((var(--width)) * 0.85);
+  }
+  
+  label{
+    display: flex;
+    flex-direction: column;
+  }
+
+  button{
+    padding: 0.2rem 0.7rem;
+  }
+}

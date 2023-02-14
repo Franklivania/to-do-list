@@ -33,6 +33,7 @@ function App() {
 
   const deleteTodo = id => {
     setTodos(todos.filter(todo => todo.id !== id));
+    alert("Are you sure you want to delete?")
   };
 
   return (
@@ -52,13 +53,13 @@ function App() {
                 {todo.task}
               </div>
               <div className="toggle">
-                <button onClick={() => updateTodo(todo.id, prompt("New task"))}> Update </button>
-                <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+                <button id="update" onClick={() => updateTodo(todo.id, prompt("New task"))}> Update </button>
+                <button id="delete" onClick={() => deleteTodo(todo.id)}>Delete</button>
               </div>
             </label>
           ))}
         </section>
-        <button onClick={() => addTodo(prompt("Enter task"))}>Add Todo</button>
+        <button id="add" onClick={() => addTodo(prompt("Enter task"))}>Add Todo</button>
       </main>
     </div>
   );
