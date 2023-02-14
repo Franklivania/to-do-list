@@ -3,8 +3,8 @@ import './App.css';
 
 function App() {
   const [todos, setTodos] = useState([
-    { id: 1, task: "Go grocery shopping", completed: false },
-    { id: 2, task: "Take a walk in the park", completed: false },
+    { id: 1, task: "Go to the market", completed: false },
+    { id: 2, task: "Complete your workout", completed: false },
     { id: 3, task: "Study for exams", completed: false }
   ]);
 
